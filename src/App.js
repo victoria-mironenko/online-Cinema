@@ -5,7 +5,16 @@ export class App extends Component {
   render() {
     return (
       `<it-h1>
-          <div>234</div>>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
+          <div>I am exhausted</div>
       </it-h1>`
     )
   }

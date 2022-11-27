@@ -7,11 +7,11 @@ export class H1 extends Component {
         this.isShadow = true;
     }
 
-   
 
     render() {
         return `
-        <div>
+        <div style="display: grid; grid-template-columns: 20% 20% 20% 20% 20%; 
+        background-color: red; margin-top: 20px; gap: 20px; padding-left: 20px">
             <slot></slot>
         </div>
         `;
