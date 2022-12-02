@@ -1,40 +1,38 @@
 import { Component } from "./core";
-import './components';
+import './components'
 import { movieService } from "./services/MovieService";
 
-
 export class App extends Component {
+
   constructor() {
     super();
 
     this.state = {
       movies: [],
       searchValue: '',
-      selectedCategory: '',
+      selectedCategory: ''
     }
   }
 
   componentDidMount() {
     movieService.getAllMovies()
-    .then(({ data }) => {
-      this.setState((state) => {
-        return {
-          ...state,
-          movies: data,
-        }
+      .then(({ data }) => {
+        this.setState((state) => {
+          return {
+            ...state,
+            movies: data
+          }
+        })
       })
-    })
   }
 
   render() {
-    console.log(this.state.movies)
     return (
       `
-      <div id="shell">
-        <it-header></it-header>
-        <it-moviecard></it-moviecard>
-      </div>
-
+        <div id="shell">
+          <it-header></it-header>
+          <movie-card title="qweqwe"></movie-card>
+        </div>
       `
     )
   }

@@ -1,11 +1,14 @@
+
 #header {
 	position:relative;
 }
+
 h1#logo {
 	position:absolute;
 	top:37px;
 	left:0;
 }
+
 h1#logo a {
 	float:left;
 	width:239px;
@@ -22,23 +25,28 @@ h1#logo a {
 	padding-top:28px;
 	padding-bottom:47px;
 }
+
 #navigation ul {
 	list-style:none;
 }
+
 #navigation ul li {
 	float:left;
 	display:inline;
 	padding-left:29px;
 }
+
 #navigation ul li a {
 	font-size:14px;
 	font-weight:bold;
 	color:#fff;
 	text-decoration:none;
 }
+
 #navigation ul li a.active, #navigation ul li a:hover {
 	color:#d91d2a;
 }
+
 #sub-navigation {
 	display:block;
 	clear:right;
@@ -46,14 +54,17 @@ h1#logo a {
 	border-bottom:1px dashed #666;
 	padding:8px 0;
 }
+
 #sub-navigation ul {
 	list-style:none;
 }
+
 #sub-navigation ul li {
 	float:left;
 	display:inline;
 	padding-right:23px;
 }
+
 #sub-navigation ul li a {
 	font-size:14px;
 	font-weight:bold;
