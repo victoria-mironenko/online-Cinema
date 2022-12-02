@@ -1,2 +1,1 @@
-export * from './Header';
-import './header.scss'
+export * from './Header'

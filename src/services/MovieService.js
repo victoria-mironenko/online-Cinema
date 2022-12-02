@@ -1,9 +1,9 @@
 import { MOVIES } from '../MOCK/movies'
 
-class MovieServise {
-     
-    getAllMovie() {
-        return Promise.resolve({ data: {} })
+class MovieService {
+    getAllMovies() {
+        return Promise.resolve({ data: MOVIES })
     }
 }
-export const movieServise = new MovieServise();
+
+export const movieService = new MovieService();
