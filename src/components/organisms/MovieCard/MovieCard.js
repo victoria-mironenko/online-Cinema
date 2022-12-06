@@ -1,4 +1,4 @@
-import { Component } from "../../core";
+import { Component } from "../../../core";
 import "./movieCard.scss";
 
 export class MovieCard extends Component {

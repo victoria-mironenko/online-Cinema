@@ -1,4 +1,4 @@
-import { matchRoute } from './utils';
+import { matchRoute } from './utils'
 
 export class Router extends HTMLElement {
     get outlet() {
@@ -18,14 +18,14 @@ export class Router extends HTMLElement {
 
     navigate(url) {
         const matchedRoute = matchRoute(this.routes, url);
-        if(matchRoute) {
+        if(matchedRoute) {
             window.history.pushState(null, null, url);
-            this.renderPage(matchedRoute);``
+            this.renderPage(matchedRoute)
         }
     }
 
     renderPage(activeRoute) {
-        const { title, component, params = {} } = activeRoute;
+        const { component, title, params = {} } = activeRoute;
         if(component) {
             while(this.outlet.firstChild) {
                 this.outlet.removeChild(this.outlet.firstChild)
@@ -39,11 +39,12 @@ export class Router extends HTMLElement {
                         view.setAttribute(key, params[key]);
                     }
                 }
+
                 this.outlet.append(view)
             }
+
             updateView()
         }
-
     }
 
     onPopState = () => {
@@ -55,19 +56,18 @@ export class Router extends HTMLElement {
         this.navigate(evt.detail.target)
     }
 
+
     connectedCallback() {
         this.navigate(window.location.pathname);
         this.addEventListener('popstate', this.onPopState);
-        this.addEventListener('change-route', this.onChangeRoute);
+        this.addEventListener('change-route', this.onChangeRoute)
     }
 
     disconnectedCallback() {
-        this.removeEventListener('popstate', this.onPopState)
+        this.removeEventListener('popstate', this.onPopState);
         this.removeEventListener('change-route', this.onChangeRoute)
     }
 
 }
 
 customElements.define('it-router', Router)
-
-

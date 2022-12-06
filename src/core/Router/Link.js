@@ -1,6 +1,5 @@
 import { Component } from "../Component";
 
-
 export class Link extends Component {
     constructor() {
         super();
@@ -17,24 +16,20 @@ export class Link extends Component {
     }
 
     componentDidMount() {
-        this.addEventListener('click', this.onClick);
+        this.addEventListener('click', this.onClick)
     }
 
     componentWillUnmount() {
-        this.removeEventListener('click', this.onClick);
+        this.removeEventListener('click', this.onClick)
     }
-
 
     render() {
         return `
-        
-        <a href="${this.props.to}">
-            <slot></slot>
-        </a>    
-        
-        `
-
+            <a href="${this.props.to}">
+                <slot></slot>
+            </a>
+        `;
     }
-}
+} 
 
-customElements.define('it-link', Link);
+customElements.define('it-link', Link)
