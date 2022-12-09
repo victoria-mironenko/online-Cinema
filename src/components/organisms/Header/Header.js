@@ -29,6 +29,11 @@ export class Header extends core.Component {
                             <span class="link">sign Up</span>
                         </it-link>
                     </li>
+                    <li>
+                        <a href="#" class="sign-out-link">
+                            <span class="link">sign Out</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
