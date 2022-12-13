@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 
 export class CloudService {
   constructor() {
+    console.log(process.env.API_KEY)
     this.config = {
       apiKey: process.env.API_KEY,
       authDomain: "online-cinema-52ff2.firebaseapp.com",

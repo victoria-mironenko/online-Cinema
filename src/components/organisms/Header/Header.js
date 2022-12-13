@@ -40,16 +40,6 @@ export class Header extends core.Component {
                             <span class="link">Admin</span>
                         </it-link>
                     </li>
-                    <li>
-                        <it-link to="${appRoutes.signIn}">
-                            <span class="link">sign In</span>
-                        </it-link>
-                    </li>
-                    <li>
-                        <it-link to="${appRoutes.signUp}">
-                            <span class="link">sign Up</span>
-                        </it-link>
-                    </li>
                     ${JSON.parse(this.props["is-logged"])
                 ? `
                 
@@ -60,7 +50,21 @@ export class Header extends core.Component {
                     </li>
                 
                 `
-                : ""
+                : `
+                <li>
+                <it-link to="${appRoutes.signIn}">
+                    <span class="link">sign In</span>
+                </it-link>
+            </li>
+            <li>
+                <it-link to="${appRoutes.signUp}">
+                    <span class="link">sign Up</span>
+                </it-link>
+            </li>
+                
+                
+                `
+                
                 }
                 </ul>
             </div>
