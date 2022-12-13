@@ -1,6 +1,5 @@
 import * as core from "./core";
 import "./components";
-import "./auth";
 import { appRoutes } from "./constants/appRoutes";
 import { authService } from "./services/Auth";
 
@@ -10,9 +9,10 @@ export class App extends core.Component {
     this.state = {
       isLoading: false,
       isLogged: false,
-      error: '',
+      error: "",
     };
   }
+
   toggleIsLoading() {
     this.setState((state) => {
       return {
@@ -29,11 +29,11 @@ export class App extends core.Component {
       .then((user) => {
         authService.user = user;
         this.setState((state) => {
-          return{
+          return {
             ...state,
-            isLogged: Boolean(user)
-          }
-        })
+            isLogged: Boolean(user),
+          };
+        });
       })
       .catch((error) => {
         this.setState((state) => {
@@ -53,7 +53,7 @@ export class App extends core.Component {
     authService
       .signOut()
       .then(() => {
-        this.state((state) => {
+        this.setState((state) => {
           return {
             ...state,
             isLogged: false,
@@ -71,23 +71,36 @@ export class App extends core.Component {
       .finally(() => {
         this.toggleIsLoading();
       });
-    }
+  };
+
+  setIsLoagged = () => {
+    console.log('user-is-logouted');
+    this.setState((state) => {
+      return {
+        ...state,
+        isLogged: true,
+      };
+    });
+  };
+
   componentDidMount() {
     this.getUser();
-    this.addEventListener("sign-out", this.onSignOut);
+    this.addEventListener("user-is-logged", this.setIsLoagged);
+    this.addEventListener("user-is-logouted", this.onSignOut);
   }
 
   componentWillUnmount() {
-    this.removeEventListener("sign-out", this.onSignOut);
+    this.removeEventListener("user-is-logged", this.setIsLoagged);
+    this.removeEventListener("user-is-logouted", this.onSignOut);
   }
 
   render() {
     return this.state.isLoading
-    ? `<it-preloader is-loading="${this.state.isLoading}"></it-preloader>`
-    : `
+      ? `<it-preloader is-loading="${this.state.isLoading}"></it-preloader>`
+      : `
       <div id="shell">
         <it-router>
-          <it-header is-logged="${this.state.isLogged}"></it-header>
+            <it-header is-logged="${this.state.isLogged}"></it-header>
               <main id="main">
                 <it-route path="${appRoutes.home}" component="home-page" title="Home Page"></it-route>
                 <it-route path="${appRoutes.admin}" component="admin-page" title="Admin Page"></it-route>
@@ -97,8 +110,8 @@ export class App extends core.Component {
                 <it-route path="${appRoutes.errorPage}" component="error-page" title="Not Found Page"></it-route>
                 <it-outlet></it-outlet>
               </main>
-            <it-footer></it-footer>  
-          </it-router>
+            <it-footer></it-footer>
+        </it-router>
       </div>
       `;
   }

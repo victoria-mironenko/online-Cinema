@@ -1,6 +1,9 @@
 import { Component } from "../../../core";
 import { authService } from "../../../services/Auth";
 import { appRoutes } from "../../../constants/appRoutes";
+import { FormManager } from "../../../core/FormManager/FormManager";
+import { storageService } from "../../../services/Storage";
+import { databaseService } from "../../../services/Database";
 
 export class AdminPage extends Component {
   constructor() {
@@ -8,9 +11,42 @@ export class AdminPage extends Component {
     this.state = {
       isLoading: false,
     };
+    this.form = new FormManager();
   }
 
+  toggleIsLoading() {
+    this.setState((state) => {
+      return {
+        ...state,
+        isLoading: !state.isLoading,
+      };
+    });
+  }
+
+  createMovie = (data) => {
+    this.toggleIsLoading();
+    storageService
+    .uploadPoster(data.poster)
+    .then((snapshot) => {
+      storageService.getDownloadURL(snapshot.ref).then((url) => {
+        databaseService
+        .create("movie", {
+          ...data,
+          poster: url,
+        })
+        .catch ((error) => {
+          console.log(error);
+        });
+      });
+    })
+    .finally(() => {
+      this.toggleIsLoading();
+    })
+  };
+
   componentDidMount() {
+    this.form.init(this.querySelector(".send-data"), {});
+    this.addEventListener("submit", this.form.handleSubmit(this.createMovie));
     if (!authService.user) {
       this.dispatch("change-route", {
         target: appRoutes[this.props.path ?? "signUp"],
@@ -25,7 +61,7 @@ export class AdminPage extends Component {
       <h1>AdminPage</h1>
       <div class="row">
         <div class="col-12">
-          <form>
+          <form class="send-data">
             <div class="mb-3">
               <label class="form-label">Type movie name</label>
               <input class="form-control" type="text" name="title">

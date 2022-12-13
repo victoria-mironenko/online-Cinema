@@ -1,22 +1,28 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { API_KEY } from "../../constants/envValues";
-import { cloudService } from "./Cloud";
+import { cloudService } from './Cloud';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 
-export class Database {
+class DatabaseService {
   constructor() {
     this._database = getFirestore(cloudService.app);
   }
 
   create(collectionKey, body) {
     const collectionRef = collection(this._database, collectionKey);
-    return addDoc(collectionRef, body)
+    return addDoc(collectionRef, body);
   }
 
   read(collectionKey) {
     const collectionRef = collection(this._database, collectionKey);
     return getDocs(collectionRef).then((documents) => {
-      return documents.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      return documents.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     });
   }
 
@@ -29,11 +35,6 @@ export class Database {
     const document = doc(this._database, collectionKey, id);
     return deleteDoc(document);
   }
-
-  static getInstance() {
-    if(!Database.instance) {
-      Database.instance = new Database()
-    }
-    return Database.instance
-  }
 }
+
+export const databaseService = new DatabaseService();

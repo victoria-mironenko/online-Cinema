@@ -2,15 +2,13 @@ import { initializeApp } from "firebase/app";
 
 export class CloudService {
   constructor() {
-    console.log(process.env.API_KEY)
     this.config = {
       apiKey: process.env.API_KEY,
-      authDomain: "online-cinema-52ff2.firebaseapp.com",
-      projectId: "online-cinema-52ff2",
-      storageBucket: "online-cinema-52ff2.appspot.com",
-      messagingSenderId: "284171025466",
-      appId: process.env.APP_ID,
-      measurementId: "G-8H50WMGL3R",
+      authDomain: "online-cinema-3ace5.firebaseapp.com",
+      projectId: "online-cinema-3ace5",
+      storageBucket: "online-cinema-3ace5.appspot.com",
+      messagingSenderId: "626397831515",
+      appId: process.env.APP_ID
     };
 
     this.app = initializeApp(this.config);
