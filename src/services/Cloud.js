@@ -8,7 +8,7 @@ export class CloudService {
       projectId: "online-cinema-52ff2",
       storageBucket: "online-cinema-52ff2.appspot.com",
       messagingSenderId: "284171025466",
-      appId: process.env.API_ID,
+      appId: process.env.APP_ID,
       measurementId: "G-8H50WMGL3R",
     };
 

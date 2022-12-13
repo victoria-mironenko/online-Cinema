@@ -16,7 +16,7 @@ export class PrivateRoute extends Component{
         if(!authService.user) {
             this.dispatch('change-route', { 
                 target: appRoutes[this.props.path ?? "signUp"] });
-          }
+        }
     }
 
     render() {

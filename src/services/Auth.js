@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   set user(user) {
-    this._user = user
+    this._user = user;
   }
 
   get user() {
@@ -23,14 +23,15 @@ export class AuthService {
 
   init() {
     return new Promise((resolve, reject) => {
-      onAuthStateChanged(this.auth, (user) => {
-        resolve(user)
-    },
-     (error) => {
-      reject(error);
-    }
-    );
-    
+      onAuthStateChanged(
+        this.auth,
+        (user) => {
+          resolve(user);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
 
@@ -42,4 +43,4 @@ export class AuthService {
   }
 }
 
-export const authService = new AuthService()
+export const authService = new AuthService();

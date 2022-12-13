@@ -3,6 +3,27 @@ import * as core from  "../../../core";
 import './header.scss'
 
 export class Header extends core.Component {
+
+    static get observedAttributes() {
+        return ['is-logged']
+    }
+
+    onSignOut = (evt) => {
+        evt.preventDefault();
+        console.log(evt.target.closest('.sign-out-link'))
+        if(evt.target.closest('.sign-out-link')) {
+            this.dispatch('sign-out')
+        }
+    }
+
+    componentDidMount() {
+        this.addEventListener('click', this.onSignOut);
+    }
+
+    componentWillUnmount() {
+        this.removeEventListener('click', this.onSignOut);
+    }
+
     render () {
         return `
         <div id="header">
@@ -29,11 +50,18 @@ export class Header extends core.Component {
                             <span class="link">sign Up</span>
                         </it-link>
                     </li>
+                    ${JSON.parse(this.props["is-logged"])
+                ? `
+                
                     <li>
                         <a href="#" class="sign-out-link">
                             <span class="link">sign Out</span>
                         </a>
                     </li>
+                
+                `
+                : ""
+                }
                 </ul>
             </div>
 
