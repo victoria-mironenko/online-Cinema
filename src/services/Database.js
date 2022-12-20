@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  getDoc,
 } from 'firebase/firestore';
 
 class DatabaseService {
@@ -24,6 +25,11 @@ class DatabaseService {
     return getDocs(collectionRef).then((documents) => {
       return documents.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     });
+  }
+
+  getDocument(collectionKey, id) {
+    const documentRef = doc(this._database, collectionKey, id);
+    return getDoc(documentRef).then((data) => data.data())
   }
 
   update(collectionKey, id, body) {
